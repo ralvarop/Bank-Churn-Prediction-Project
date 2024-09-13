@@ -14,7 +14,7 @@ def read_file_csv(filename):
     y_train = df[['Exited']]
     print(filename, ' cargado correctamente')
     # Entrenamos el modelo con toda la muestra
-    xgb_mod=xgb.XGBClassifier(random_state=42)
+    xgb_mod=xgb.XGBClassifier(max_depth=2, n_estimators=50, objective='binary:logistic', seed=0, silent=True, subsample=.8)
     xgb_mod.fit(X_train, y_train)
     print('Modelo entrenado')
     # Guardamos el modelo entrenado para usarlo en produccion
