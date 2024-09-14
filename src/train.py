@@ -1,7 +1,8 @@
 import pandas as pd
-import xgboost as xgb
+from lightgbm import LGBMClassifier
+from sklearn.model_selection import train_test_split
+from imblearn.over_sampling import SMOTE
 import pickle
-import os
 
 ##########################################################
 # Código de Entrenamiento - Modelo de Price Prediction
@@ -12,20 +13,23 @@ def read_file_csv(filename):
     df = pd.read_csv(os.path.join('../data/processed', filename)).set_index('id')
     X_train = df.drop(['Exited'],axis=1)
     y_train = df[['Exited']]
+    # Balancemos los datos de Train
+    smote = SMOTE(random_state=42)
+    X_train, y_train = smote.fit_resample(X_train, y_train)
     print(filename, ' cargado correctamente')
     # Entrenamos el modelo con toda la muestra
-    xgb_mod=xgb.XGBClassifier(max_depth=2, n_estimators=50, objective='binary:logistic', seed=0, silent=True, subsample=.8)
-    xgb_mod.fit(X_train, y_train)
+    lgb = LGBMClassifier(random_state=42)
+    lgb.fit(X_train, y_train)
     print('Modelo entrenado')
     # Guardamos el modelo entrenado para usarlo en produccion
-    package = '../models/best_model.pkl'
-    pickle.dump(xgb_mod, open(package, 'wb'))
+    filename = '../models/best_model.pkl'
+    pickle.dump(lgb, open(filename, 'wb'))
     print('Modelo exportado correctamente en la carpeta models')
 
 
 # Entrenamiento completo
 def main():
-    read_file_csv('train.csv')
+    read_file_csv('churn_train.csv')
     print('Finalizó el entrenamiento del Modelo')
 
 
