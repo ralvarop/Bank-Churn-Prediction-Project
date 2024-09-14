@@ -3,8 +3,9 @@
 ############################################################################
 
 import pandas as pd
-import xgboost as xgb
-import pickle
+import numpy as np
+from scipy.stats.mstats import winsorize
+from sklearn.preprocessing import LabelEncoder
 import os
 
 
@@ -25,7 +26,7 @@ def score_model(filename, scores):
 
 # Scoring desde el inicio
 def main():
-    df = score_model('score.csv','final_score.csv')
+    df = score_model('churn_score.csv','final_score.csv')
     print('Finalizó el Scoring del Modelo')
 
 
