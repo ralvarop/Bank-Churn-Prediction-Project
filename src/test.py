@@ -1,5 +1,5 @@
 ############################################################################
-# Código de Evaluación - Modelo de Price Prediction
+# Código de Evaluación - Modelo de Churn Prediction
 ############################################################################
 
 import pandas as pd
