@@ -33,7 +33,6 @@ def data_preparation(df):
     return df
 
 # Exportamos la matriz de datos con las columnas seleccionadas
-# def data_exporting(df, features, filename):
 def data_exporting_train_test(df, filename_train,filename_test):
     # Sepramos la data en Train y Test
     X = df.drop(['Exited'],axis=1)
@@ -44,3 +43,22 @@ def data_exporting_train_test(df, filename_train,filename_test):
     train.to_csv(os.path.join('../data/processed/', filename_train))
     test.to_csv(os.path.join('../data/processed/', filename_test))
     print(filename_train, '-' ,filename_test,' exportados correctamente en la carpeta processed')
+
+def data_exporting_score(df, filename):
+    df.to_csv(os.path.join('../data/processed/', filename))
+    print(filename, 'exportado correctamente en la carpeta processed')
+
+
+# Generamos las matrices de datos que se necesitan para la implementación
+def main():
+    # Matriz de train and test
+    df1 = read_file_csv('churn_dataset.csv')
+    tdf1 = data_preparation(df1)
+    data_exporting_train_test(tdf1,'churn_train.csv','churn_test.csv')
+    # Matriz de Scoring
+    df2 = read_file_csv('churn_score.csv')
+    tdf2 = data_preparation(df2)
+    data_exporting_score(tdf2,'churn_score.csv')
+    
+if __name__ == "__main__":
+    main()
