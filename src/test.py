@@ -3,16 +3,17 @@
 ############################################################################
 
 import pandas as pd
-import xgboost as xgb
-import pickle
-import matplotlib.pyplot as plt
+from lightgbm import LGBMClassifier
+from sklearn.model_selection import train_test_split
+from imblearn.over_sampling import SMOTE
 from sklearn.metrics import *
-import os
+import matplotlib.pyplot as plt
+import pickle
 
 
 # Cargar la tabla transformada
 def eval_model(filename):
-    df = pd.read_csv(os.path.join('../data/processed', filename)).set_index('ID')
+    df = pd.read_csv(os.path.join('../data/processed', filename)).set_index('id')
     print(filename, ' cargado correctamente')
     # Leemos el modelo entrenado para usarlo
     package = '../models/best_model.pkl'
@@ -36,7 +37,7 @@ def eval_model(filename):
 
 # Validación desde el inicio
 def main():
-    df = eval_model('test.csv')
+    df = eval_model('churn_test.csv')
     print('Finalizó la validación del Modelo')
 
 
