@@ -1,12 +1,12 @@
+##########################################################
+# Código de Entrenamiento - Modelo de Churn Prediction
+##########################################################
+
 import pandas as pd
 from lightgbm import LGBMClassifier
 from sklearn.model_selection import train_test_split
 from imblearn.over_sampling import SMOTE
 import pickle
-
-##########################################################
-# Código de Entrenamiento - Modelo de Price Prediction
-##########################################################
 
 # Cargar la tabla transformada
 def read_file_csv(filename):
