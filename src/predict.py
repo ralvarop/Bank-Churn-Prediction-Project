@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats.mstats import winsorize
 from sklearn.preprocessing import LabelEncoder
+import pickle
 import os
 
 
