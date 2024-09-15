@@ -37,6 +37,7 @@ def data_exporting_train_test(df, filename_train,filename_test):
     # Sepramos la data en Train y Test
     X = df.drop(['Exited'],axis=1)
     y = df[['Exited']]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20, random_state = 42)
     # Dataset de Train (80%) y Test (20%)
     train=pd.concat([X_train,y_train],axis=1)
     test=pd.concat([X_test,y_test],axis=1)
