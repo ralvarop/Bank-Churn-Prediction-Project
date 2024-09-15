@@ -9,6 +9,7 @@ from imblearn.over_sampling import SMOTE
 from sklearn.metrics import *
 import matplotlib.pyplot as plt
 import pickle
+import os
 
 
 # Cargar la tabla transformada
