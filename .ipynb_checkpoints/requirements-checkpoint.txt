@@ -4,3 +4,4 @@ xgboost>=1.5.2
 lightgbm>=4.0.0
 #imbalanced-learn>=0.10.0
 imbalanced-learn==0.13.0 
+apache-airflow==2.7.2
